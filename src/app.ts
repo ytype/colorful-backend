@@ -2,8 +2,8 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import express, { Request, Response, NextFunction } from 'express'
 import { BAD_REQUEST } from 'http-status-codes'
+import cors from 'cors'
 import 'express-async-errors'
-
 import router from './routes'
 import logger from '@util/logger'
 import connectDB from '@config/connect'
@@ -13,6 +13,8 @@ connectDB()
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(helmet())
+app.use(cors())
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
