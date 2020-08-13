@@ -1,0 +1,42 @@
+post /api/color (조회)
+	id == '특정 아이디' => 특정 작품에 대한 정보
+	아니라면 모든 작품 정보 반환
+	
+post /api/comment (삽입)
+	작품의 id를 받아서 댓글을 push
+	
+delete /api/comment/{colorid}/{commentid}
+	작품의 아이디를 받아서 댓글을 pull (삭제)
+	
+post /api/like
+	작품의 아이디를 받아서 그 작품의 like배열 안에 사용자의 아이디를 푸시
+	
+post /api/unlike
+	작품의 아이디를 받아서 like 배열에서 pull (삭제)
+	
+post /api/formInput
+	hex values를 받아서 데이터베이스에 저장
+	
+===========================================================================
+delete 디자인이 맞는지 구글링 해보기
+
+get /api/color
+	모든 작품 정보 반환
+	
+get /api/color/{id}
+	id에 대한 정보 반환
+	
+pots /api/color
+	hex values를 받아서 데이터베이스에 저장
+
+delete /api/color/:colorid
+	게시글 삭제
+
+post /api/comment
+	댓글 삽입
+	
+delete /api/comment/:colorid/:commentid
+	댓글 삭제
+	
+post /api/like
+delete /api/like/:colorid/
