@@ -40,18 +40,37 @@ router.post('/comment', async (req: Request, res: Response) => {
         user: req.body.user,
         content: req.body.content
     })
+    const response = await Color.updateOne({ _id: id }, {
+        $push: { comments: comment }
+    })
+    res.status(OK).json({response})
 })
 
 router.delete('/comment/:id/:commentid', async (req: Request, res: Response) => {
-    res.send('Hello world')
+    const id = req.body.params.id
+    const commentid = req.body.params.commentid
+    const response = await Color.update({ _id: id },{
+        $pull: { comments: { _id: commentid }}
+    })
+    res.status(OK).json({response})
 })
 
 router.post('/like', async (req: Request, res: Response) => {
-    res.send('Hello world')
+    const id = req.body.params.id
+    const user = req.body.params.user
+    const response = await Color.update({ _id: id },
+        { $push: { like: user }
+    })
+    res.status(OK).json({response})
 })
 
 router.delete('/color/:id', async (req: Request, res: Response) => {
-    res.send('Hello world')
+    const id = req.body.params.id
+    const user = req.body.params.user
+    const response = await Color.update({ _id: id },
+        { $pull: { like: user }
+    })
+    res.status(OK).json({response})
 })
 
 

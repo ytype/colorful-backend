@@ -14,7 +14,7 @@ export interface IColor extends Document {
     url: string,
     like: [string],
     date: Date,
-    comments: Schema.Types.ObjectId
+    comments: any[]
 }
 
 const Color:Schema = new Schema({
