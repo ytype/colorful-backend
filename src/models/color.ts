@@ -11,7 +11,6 @@ export interface IColor extends Document {
     user: string,
     title: string,
     content: string,
-    url: string,
     like: [string],
     date: Date,
     comments: any[]
@@ -22,7 +21,6 @@ const Color:Schema = new Schema({
   user: String,
   title: String,
   content: String,
-  url: String,
   like: [String],
   date: { type: Date, default: Date.now },
   comments: [Comment]

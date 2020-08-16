@@ -8,8 +8,11 @@ const router: Router = Router()
 
 // id => colorid, commentid = commentid
 router.get('/color', async (req: Request, res: Response) => {
-    const color = await Color.find().sort({like:'desc'})
-    res.status(OK).json({color})
+    setTimeout( async () => {
+        const color = await Color.find().sort({like:'desc'})
+        res.status(OK).json({color})
+    }, 1000)
+
 })
 
 router.get('/color/:id', async (req: Request, res: Response) => {
@@ -47,8 +50,8 @@ router.post('/comment', async (req: Request, res: Response) => {
 })
 
 router.delete('/comment/:id/:commentid', async (req: Request, res: Response) => {
-    const id = req.body.params.id
-    const commentid = req.body.params.commentid
+    const id = req.params.id
+    const commentid = req.params.commentid
     const response = await Color.update({ _id: id },{
         $pull: { comments: { _id: commentid }}
     })
@@ -72,8 +75,5 @@ router.delete('/color/:id', async (req: Request, res: Response) => {
     })
     res.status(OK).json({response})
 })
-
-
-
 
 export default router
