@@ -8,11 +8,8 @@ const router: Router = Router()
 
 // id => colorid, commentid = commentid
 router.get('/color', async (req: Request, res: Response) => {
-    setTimeout( async () => {
         const color = await Color.find().sort({like:'desc'})
         res.status(OK).json({color})
-    }, 1000)
-
 })
 
 router.get('/color/:id', async (req: Request, res: Response) => {
@@ -52,7 +49,7 @@ router.post('/comment', async (req: Request, res: Response) => {
 router.delete('/comment/:id/:commentid', async (req: Request, res: Response) => {
     const id = req.params.id
     const commentid = req.params.commentid
-    const response = await Color.update({ _id: id },{
+    const response = await Color.updateOne({ _id: id },{
         $pull: { comments: { _id: commentid }}
     })
     res.status(OK).json({response})
@@ -61,7 +58,7 @@ router.delete('/comment/:id/:commentid', async (req: Request, res: Response) => 
 router.post('/like', async (req: Request, res: Response) => {
     const id = req.body.params.id
     const user = req.body.params.user
-    const response = await Color.update({ _id: id },
+    const response = await Color.updateOne({ _id: id },
         { $push: { like: user }
     })
     res.status(OK).json({response})
@@ -70,7 +67,7 @@ router.post('/like', async (req: Request, res: Response) => {
 router.delete('/color/:id', async (req: Request, res: Response) => {
     const id = req.body.params.id
     const user = req.body.params.user
-    const response = await Color.update({ _id: id },
+    const response = await Color.updateOne({ _id: id },
         { $pull: { like: user }
     })
     res.status(OK).json({response})

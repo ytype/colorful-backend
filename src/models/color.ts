@@ -13,7 +13,8 @@ export interface IColor extends Document {
     content: string,
     like: [string],
     date: Date,
-    comments: any[]
+    comments: any[],
+    image: any
 }
 
 const Color:Schema = new Schema({
@@ -23,7 +24,8 @@ const Color:Schema = new Schema({
   content: String,
   like: [String],
   date: { type: Date, default: Date.now },
-  comments: [Comment]
+  comments: [Comment],
+  image: String
 })
 
 export default mongoose.model<IColor>('Color', Color)
