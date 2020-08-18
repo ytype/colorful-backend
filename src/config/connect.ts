@@ -1,5 +1,5 @@
 import { ConnectionOptions, connect } from 'mongoose'
-import logger from '@util/logger'
+import logger from '../util/logger'
 const connectDB = async () => {
   try {
     let mongoURI: string | undefined = process.env.mongoURI

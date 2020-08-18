@@ -1,14 +1,13 @@
 import { Router,Request, Response } from 'express'
 import { OK, CREATED } from 'http-status-codes'
-import Color, {IColor} from '@models/color'
-import Comment, {IComment} from '@models/comment'
-import logger from '@util/logger'
+import Color, {IColor} from '../models/color'
+import Comment, {IComment} from '../models/comment'
 
 const router: Router = Router()
 
 // id => colorid, commentid = commentid
 router.get('/color', async (req: Request, res: Response) => {
-        const color = await Color.find().sort({like:'desc'})
+        const color = await Color.find({}).select('-image').sort({like:'desc'})
         res.status(OK).json({color})
 })
 
