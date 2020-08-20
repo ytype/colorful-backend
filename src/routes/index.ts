@@ -55,6 +55,7 @@ router.delete('/comment/:id/:commentid', async (req: Request, res: Response) => 
 })
 
 router.post('/like', async (req: Request, res: Response) => {
+    console.log("!")
     const id = req.body.params.id
     const user = req.body.params.user
     const response = await Color.updateOne({ _id: id },
@@ -63,9 +64,9 @@ router.post('/like', async (req: Request, res: Response) => {
     res.status(OK).json({response})
 })
 
-router.delete('/color/:id', async (req: Request, res: Response) => {
-    const id = req.body.params.id
-    const user = req.body.params.user
+router.delete('/like/:id/:user', async (req: Request, res: Response) => {
+    const id = req.params.id
+    const user = req.params.user
     const response = await Color.updateOne({ _id: id },
         { $pull: { like: user }
     })
