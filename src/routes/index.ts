@@ -7,8 +7,7 @@ const router: Router = Router()
 
 // id => colorid, commentid = commentid
 router.get('/color', async (req: Request, res: Response) => {
-        //const color = await Color.find({}).select('-image').sort({'like': -1})
-        const response = await Color.aggregate([
+        let color = await Color.aggregate([
             {"$project": {
                 "color":1,
                 "user":1,
@@ -21,7 +20,7 @@ router.get('/color', async (req: Request, res: Response) => {
             }},
             {"$sort": {"length":-1}}
         ])
-        res.status(OK).json({response})
+        res.status(OK).json({color})
 })
 
 router.get('/color/:id', async (req: Request, res: Response) => {
